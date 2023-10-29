@@ -5,7 +5,7 @@ Array is a data structure to store a data elements with the same data type, in w
 This source code implements all about arrays and its operations:
 <ul>
     <li><b>Read</b> has complexity <code>O(n)</code></li>
-    <li></b>Insertion</b></li>
+    <li></b>Operations: <b>push(), pop(), splice()</b></li>
     <li></b>Deletion</b></li>
     <li></b>Acessing Specific Item</b></li>
 </ul>

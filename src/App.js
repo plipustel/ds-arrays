@@ -1,7 +1,7 @@
 /* Sorting Algorithm in Data Structure
  * @Implemented By: Plipus Tel | www.plipustel.com
  * @Created Date: Mei 28, 2023
- * @Lastest Updated: Oct 29 2023
+ * @Lastest Updated: Nov 02 2023
  * Test update
  */
 import React, { useState, useEffect } from "react";
@@ -20,6 +20,7 @@ function App() {
     arrayLastindex: "",
     arrayFirstItem: "",
     arrayLastItem: "",
+    isEmpty: "",
   });
   // Create an array of the object's property names and values
   const arrayInfoItems = Object.entries(arrayInfo);
@@ -35,94 +36,109 @@ function App() {
       arrayLastindex: arrData.length - 1,
       arrayFirstItem: arrData[0],
       arrayLastItem: arrData[arrData.length - 1],
+      isEmpty: arrData.isEmpty ? "True" : "False",
     });
   };
 
+  // READ
   /* Read Array */
   const readArrayHandler = () => {
     setReadArray(arrData);
   };
 
-  /* Array Push */
+  /**
+   * PUSH(<n values>) -> Only insert item[s] from last of array
+   * arr.push(3) -> insert item 3 to the last of array
+   * arr.push(3, 4....n); -> insert item 4....n to the last of array
+   *  */
   const arrayPush = () => {
     const newDataArray = [...crudData];
-    newDataArray.push(8); // push (insert) as much as 1 element in the last of array
+    newDataArray.push(8); // push (insert): insert an item in the last of the array
     setCrudData(newDataArray);
   };
 
-  /* Insert an item */
+  const arrayPushSomeItems = () => {
+    const newDataArray = [...crudData];
+    newDataArray.push(12, 14, 21); // push (insert): insert an item in the last of the array
+    setCrudData(newDataArray);
+  };
+  /**
+   * SPLICE(<startingIndex>, <lengthRemoving>, <items to be insert>) -> Insertion, Deletion and Replacing
+   * arr.splice(2) -> remove all items from starting index '2' from array
+   * arr.splice(2, 1) -> remove only item in index 2
+   * arr.splice(2, 1, 4) -> insert '4' item in the index '2' | remove item with index '2' as much as 1 and then insert 4
+   * arr.splice(2, 1, 4, 2, 8) -> insert '4', '2', '8' respectively in the index '2' | remove first item with index '2' as much as 1 and then insert 4, 2, 8
+   * arr.splice(2, 3, 9, 2, 3) -> remove three elements starting from index '2' and then insert 9, 2, 3 on that index.
+   *  */
+
+  /* Insert an item in the position index '1' */
   const arrayInsertAnItem = () => {
     const newDataArray = [...crudData];
-    // splice(startingIndex, length, replacedWith) --> remove element index 1 with length 1, then replace with 12 value
+    /* Don't remove  the first item with index '1', just insert 18 in the position */
     newDataArray.splice(1, 0, 18);
     setCrudData(newDataArray);
   };
 
-
-  /* Insert some items */
+  /* Insert some items in the positions index '1' */
   const arrayInsertSomeItems = () => {
     const newDataArray = [...crudData];
-    // splice(startingIndex, length, replacedWith) --> remove element index 3 with length 2, then replace with 12 value
+    /* Don't remove  the first item with index '1', just insert 12, 13, 30 items in the position */
     newDataArray.splice(1, 0, 12, 13, 30);
     setCrudData(newDataArray);
   };
 
-
-  /* Array Pop */
+  /**
+   * POP() -> Only an item from the last of array. Can't multiple items
+   * arr.pop() -> remove 1 item from the last of array
+   *  */
   const arrayPop = () => {
     const newDataArray = [...crudData];
-    newDataArray.pop(); // pop (delete) as much as 1 element from the last of array
+    /* remove one item from the last of array */
+    newDataArray.pop();
     setCrudData(newDataArray);
   };
 
-   /* Remove an item */
-   const arrayRemoveAnItem = () => {
+  /* Remove all items */
+  const arrayRemoveAllItems = () => {
     const newDataArray = [...crudData];
-    // splice(startingIndex, length, replacedWith) --> remove element index 1 with length 1, then replace with 12 value
+    /* Remove all items staring index from '2' */
+    newDataArray.splice(2);
+    setCrudData(newDataArray);
+  };
+
+  /* Remove an item */
+  const arrayRemoveAnItem = () => {
+    const newDataArray = [...crudData];
+    /* Remove item in the index '1' with length 1 */
     newDataArray.splice(1, 1);
     setCrudData(newDataArray);
   };
 
-
-   /* Remove an item */
-   const arrayRemoveSomeItems = () => {
+  /* Remove some items */
+  const arrayRemoveSomeItems = () => {
     const newDataArray = [...crudData];
-    // splice(startingIndex, length, replacedWith) --> remove element index 1 with length 1, then replace with 12 value
+    /* Remove 3 items starting from index '1' */
     newDataArray.splice(1, 3);
     setCrudData(newDataArray);
   };
-  /* Array Splice */
-  const arraySpliceItem = () => {
+
+  /* Replace items */
+  const arrayUpdateItems = () => {
     const newDataArray = [...crudData];
-    newDataArray.splice(6); // splice(startingIndex, length) --> remove an element with index 6
+    /* Remove first the elements as much as 3 starting from index 2 and then insert 100, 200, 300. We call this replace */
+    newDataArray.splice(1, 3, 100, 200, 300);
     setCrudData(newDataArray);
   };
 
-  /* Array Splice */
-  const arraySplice = () => {
-    const newDataArray = [...crudData];
-    newDataArray.splice(3, 2); // splice(startingIndex, length) --> remove elemenents with index 3 and 2
-    setCrudData(newDataArray);
-  };
-
-
-
-  const arraySpliceUpdateSecondElement = () => {
-    const newDataArray = [...crudData];
-    // splice(startingIndex, length, replacedWith) --> remove element index 1 with length 1, then replace with 12 value
-    newDataArray.splice(1, 1, 18);
-    setCrudData(newDataArray);
-  };
-
-
-  /* Reset Array */
+  /* Replace items */
   const resetArray = () => {
     const newDataArray = [...initialData];
+    /* Remove first the elements as much as 3 starting from index 2 and then insert 100, 200, 300. We call this replace */
     setCrudData(newDataArray);
   };
   return (
     <div>
-      <h1>One Dimenstion Arrays</h1>
+      <h1>One Dimension Arrays</h1>
       <span>
         By Plipus Tel{" "}
         <a href="https://www.plipustel.com" target="_blank">
@@ -155,7 +171,7 @@ function App() {
           <li key={index}>{rows}</li>
         ))}
       </ul>
-      <h3>3. Push (8), Pop(), and Splice()</h3>
+      <h3>3. CRUD Operations: Push (), Pop(), and Splice()</h3>
       <ul className="numbers">
         {crudData.map((rows, index) => (
           <li key={index}>{rows}</li>
@@ -168,58 +184,94 @@ function App() {
         }}
       >
         {/* Left section */}
-        <div style={{marginRight:20,}}> 
-        
+        <div style={{ marginRight: 20 }}>
           <div>
             <button onClick={arrayPush} style={{ marginInline: 20 }}>
               Push item '8'
             </button>
-            <text>Insert in the last of array <b>arr.push(8)</b></text>
+            <text>
+              Insert in the last of array <b>arr.push(8)</b>
+            </text>
+          </div>
+          <div>
+            <button onClick={arrayPushSomeItems} style={{ marginInline: 20 }}>
+              Push Some Items
+            </button>
+            <text>
+              Insert some items in the last of array <b>arr.push(12, 14, 21)</b>
+            </text>
           </div>
           <div>
             <button onClick={arrayInsertAnItem} style={{ marginInline: 20 }}>
               Insert item '18'
             </button>
-            <text>Insert new item in index 1 <b>arr.splice(1, 0, 18)</b></text>
+            <text>
+              Insert new item in index 1 <b>arr.splice(1, 0, 18)</b>
+            </text>
           </div>
           <div>
             <button onClick={arrayInsertSomeItems} style={{ marginInline: 20 }}>
               Insert items '12', '13', '30'
             </button>
-            <text>Insert new item in index 1 <b>arr.splice(1, 0, 12, 13, 30)</b></text>
+            <text>
+              Insert new item in index 1 <b>arr.splice(1, 0, 12, 13, 30)</b>
+            </text>
           </div>
-          
         </div>
 
         {/* Right section */}
         <div>
           <div>
             <button onClick={arrayPop} style={{ marginInline: 20 }}>
-             Pop an item
+              Pop an item
             </button>
-            <text>Remove an item from the last index <b>arr.pop()</b></text>
+            <text>
+              Remove an item from the last index <b>arr.pop()</b>
+            </text>
           </div>
           <div>
-            <button onClick={arrayRemoveAnItem} style={{ marginInline: 20 }}>
-              Remove item '1'
+            <button onClick={arrayRemoveAllItems} style={{ marginInline: 20 }}>
+              Remove all items
             </button>
-            <text>Remove new item in index 1 <b>arr.splice(1, 1)</b></text>
+            <text>
+              Remove all items start from index '2' <b>arr.splice(2)</b>
+            </text>
+          </div>
+
+          <div>
+            <button onClick={arrayRemoveAnItem} style={{ marginInline: 20 }}>
+              Remove an item
+            </button>
+            <text>
+              Remove new item in index 1 <b>arr.splice(1, 1)</b>
+            </text>
           </div>
           <div>
             <button onClick={arrayRemoveSomeItems} style={{ marginInline: 20 }}>
               Remove some items
             </button>
-            <text>Remove three items starting from 1 <b>arr.splice(1, 3)</b></text>
+            <text>
+              Remove three items starting from 1 <b>arr.splice(1, 3)</b>
+            </text>
           </div>
           <div>
+            <button onClick={arrayUpdateItems} style={{ marginInline: 20 }}>
+              Update Items
+            </button>
+            <text>
+              Remove three items starting from 1 and then replace{" "}
+              <b>arr.splice(1, 3, 100, 200, 300)</b>
+            </text>
+          </div>
+
+          <div>
             <button onClick={resetArray} style={{ marginInline: 20 }}>
-             Reset Array
+              Reset Array
             </button>
           </div>
-          
         </div>
       </div>
-    </div>  
+    </div>
   );
 }
 

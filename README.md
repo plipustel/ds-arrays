@@ -11,9 +11,10 @@ This source code implements all about arrays and its operations:
 </ul>
 
 ## How To Setup
-
 After the project is cloned on your local machine, navigate to the project and then run <code>npm start</code>, in case npm has an issue due to the version or react script, simply remove the <code> node_modules</code> and <code>package-lock.json</code>, finally run <code>npm install</code>, you should have a new fresh version of <code>node modules</code>. Run on your command prompt <code>npm start</code> again, and check on the browser with this address bar: 'localhost:3000'
 
 ## Source Code
-
 To view the source code referes to <code>src/App.js</code>
+
+## References
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array</a>

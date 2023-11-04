@@ -163,7 +163,7 @@ function App() {
   const resetArray = () => {
     const newDataArray = [...initialData];
     /* Remove first the elements as much as 3 starting from index 2 and then insert 100, 200, 300. We call this replace */
-    setCrudData([newDataArray]);
+    setCrudData(newDataArray);
   };
 
   return (

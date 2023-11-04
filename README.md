@@ -4,7 +4,7 @@ Implemented by: Plipus Tel <a href="https://www.plipus.tel.com" target="_blank">
 Array is a data structure to store a data elements with the same data type, in which each element has an unique 'index' and starting from '0', the index will be used to access and perform the operations/manipulations of array elements. Array can accept 'string', 'number' or 'object'. <p> 
 This source code implements the essential array's operations:
 <ul>
-    <li><b>Read</b> has complexity <code>O(n)</code></li>
+    <li>Read operation: <b>Map()</b> has complexity <code>O(n)</code></li>
     <li></b>CRUD Operations: <b>push(), pop(), splice()</b></li>
     <li><b>Find() and Filter() </b></li>
 </ul>

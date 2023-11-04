@@ -9,7 +9,7 @@ import "./App.css";
 
 function App() {
   /* State: Initial Data */
-  const initialData = [9, 1, 8, 2, 5, 6, 9, 4, 5, 7];
+  const initialData = [3, 2, 9, 1, 8, 2, 8, 5, 6, 9, 4, 5, 7];
   const [arrData, setArrData] = useState([...initialData]);
   const [crudData, setCrudData] = useState([...initialData]);
 
@@ -27,6 +27,10 @@ function App() {
 
   /* State: read array */
   const [readArray, setReadArray] = useState([]);
+
+  /* State for find() and filter() */
+  const [arrFind, setArrFind] = useState();
+  const [arrFilter, setArrFilter] = useState([]);
 
   /* Function: get array information */
   const getArrayInfo = () => {
@@ -130,12 +134,38 @@ function App() {
     setCrudData(newDataArray);
   };
 
-  /* Replace items */
+  /**
+   * 3. FIND and FILTER
+   */
+  const arrayFind = () => {
+    const newDataArray = [...crudData];
+    /**
+     *  Return only the first item which satisfied with the condition, if you wanna index use findIndex
+     *  Array = [1, 8, 9, 4, 8, 2, 2, 4, 5]
+     *  Array.find((item) => item > 2) // return 9
+     *  Array.findIndex((item) => item > 2) // return 1
+     *  Array.findLast((item) => item > 2) // Opposite of find(), return 4
+     * */
+    const find = newDataArray.find((item) => item > 2);
+    setArrFind(find);
+  };
+
+  const arrayFilter = () => {
+    const newDataArray = [...crudData];
+    /**
+     * Filter array based on the criteria and return a new array, without modify the original array
+     */
+    const filter = newDataArray.filter((item) => item > 5);
+    setArrFilter(filter);
+  };
+
+  /* Reset items */
   const resetArray = () => {
     const newDataArray = [...initialData];
     /* Remove first the elements as much as 3 starting from index 2 and then insert 100, 200, 300. We call this replace */
-    setCrudData(newDataArray);
+    setCrudData([newDataArray]);
   };
+
   return (
     <div>
       <h1>One Dimension Arrays</h1>
@@ -171,7 +201,7 @@ function App() {
           <li key={index}>{rows}</li>
         ))}
       </ul>
-      <h3>3. CRUD Operations: Push (), Pop(), and Splice()</h3>
+      <h3>3. CRUD Operations: Push(), Pop(), and Splice()</h3>
       <ul className="numbers">
         {crudData.map((rows, index) => (
           <li key={index}>{rows}</li>
@@ -268,6 +298,48 @@ function App() {
             <button onClick={resetArray} style={{ marginInline: 20 }}>
               Reset Array
             </button>
+          </div>
+        </div>
+      </div>
+      <h3>4. Operations: Find(), and Filter() </h3>
+      <ul className="numbers">
+        {crudData.map((rows, index) => (
+          <li key={index}>{rows}</li>
+        ))}
+      </ul>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+      >
+        {/* Left section */}
+        <div style={{ marginRight: 20 }}>
+          <div>
+            <button onClick={arrayFind} style={{ marginInline: 20 }}>
+              Find Item &gt; 2
+            </button>
+            <text>
+              <b>arr.find((item) =&gt; item &gt; 2) </b>
+              Will return only the first element which match the criteria.{" "}
+              <b>Result: {arrFind}</b>
+            </text>
+          </div>
+          <div>
+            <button onClick={arrayFilter} style={{ marginInline: 20 }}>
+              Filter Item &gt; 5
+            </button>
+            <text>
+              <b>arr.filter((item) =&gt; item &gt; 5)</b>
+              Return a new array in which match the criteria.{" "}
+              <b>
+                Result: [
+                {arrFilter.map((item, index) => (
+                  <text key={index}>{item}, </text>
+                ))}
+                ]
+              </b>
+            </text>
           </div>
         </div>
       </div>

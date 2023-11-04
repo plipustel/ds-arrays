@@ -6,7 +6,7 @@ This source code implements the essential array's operations:
 <ul>
     <li><b>Read</b> has complexity <code>O(n)</code></li>
     <li></b>CRUD Operations: <b>push(), pop(), splice()</b></li>
-    <li></b>Find() and Filter() </b></li>
+    <li><b>Find() and Filter() </b></li>
 </ul>
 
 ## How To Setup
